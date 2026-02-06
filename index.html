@@ -1,10 +1,461 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Roblox Lua Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brenton | Roblox Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00d9ff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.1s ease;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 9998;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00d9ff;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            color: #00d9ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero .gradient-text {
+            background: linear-gradient(90deg, #00d9ff, #a855f7, #00d9ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #b0b0b0;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero .cta {
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid #00d9ff;
+            color: #00d9ff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero .cta:hover {
+            background: #00d9ff;
+            color: #0f0f0f;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 48px;
+            margin-bottom: 50px;
+            color: #00d9ff;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d9ff;
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .project-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .project-card .tech-stack {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .project-card .tech-stack span {
+            padding: 5px 12px;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #00d9ff;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .skill:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .skill h3 {
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .contact-links a:hover {
+            color: #00d9ff;
+            transform: translateY(-5px);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d9ff, #a855f7);
+            z-index: 9999;
+            transition: width 0.1s;
+        }
+
+        /* Fade in on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 48px; }
+            nav { padding: 20px; }
+            section { padding: 80px 20px; }
+            body { cursor: auto; }
+            .cursor, .cursor-follower { display: none; }
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to My Portfolio</h1>
-  <p>This is my Roblox Lua portfolio.</p>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Brenton</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1 class="gradient-text">Roblox Developer</h1>
+        <p>Building immersive experiences with Lua</p>
+        <button class="cta">View My Work</button>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="fade-in">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <h3>Whitelist System</h3>
+                <p>Advanced whitelist management system with admin panel and database integration for secure access control.</p>
+                <div class="tech-stack">
+                    <span>Lua</span>
+                    <span>Roblox</span>
+                    <span>DataStores</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <h3>Admin Commands</h3>
+                <p>Comprehensive admin panel with 50+ moderation commands, permission levels, and logging system.</p>
+                <div class="tech-stack">
+                    <span>Lua</span>
+                    <span>OOP</span>
+                    <span>UI Design</span>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <h3>Game Framework</h3>
+                <p>Modular game framework using Knit for scalable development with service-based architecture.</p>
+                <div class="tech-stack">
+                    <span>Lua</span>
+                    <span>Knit</span>
+                    <span>Rojo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="fade-in">Skills & Technologies</h2>
+        <div class="skills-container">
+            <div class="skill fade-in">
+                <h3>Lua Programming</h3>
+                <p>Advanced scripting for Roblox</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>Roblox Studio</h3>
+                <p>Game development & design</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>Rojo</h3>
+                <p>Version control & workflow</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>UI/UX Design</h3>
+                <p>Modern interface creation</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>DataStores</h3>
+                <p>Data persistence & management</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>Knit Framework</h3>
+                <p>Structured development</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="fade-in">Get In Touch</h2>
+        <p class="fade-in">Interested in working together? Let's connect!</p>
+        <div class="contact-links fade-in">
+            <a href="https://github.com/stgcent-dotcom" target="_blank">GitHub</a>
+            <a href="https://discord.com" target="_blank">Discord</a>
+            <a href="https://devforum.roblox.com" target="_blank">DevForum</a>
+        </div>
+    </section>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                follower.style.left = e.clientX + 'px';
+                follower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+
+        // Cursor expand on clickable elements
+        const clickables = document.querySelectorAll('a, button, .project-card');
+        clickables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                follower.style.transform = 'scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                follower.style.transform = 'scale(1)';
+            });
+        });
+
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollIndicator.style.width = scrollPercentage + '%';
+        });
+
+        // Fade in on scroll
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeInElements.forEach(el => fadeInObserver.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // CTA button scroll to projects
+        document.querySelector('.cta').addEventListener('click', () => {
+            document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
