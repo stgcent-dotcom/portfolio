@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brenton | Roblox Developer</title>
+    <title>niluntiltrue | Roblox Developer</title>
     <style>
         * {
             margin: 0;
@@ -443,6 +443,14 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
+        .modal-right iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 15px;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
         /* Placeholder for project images */
         .project-placeholder {
             width: 100%;
@@ -568,7 +576,7 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">Brenton</div>
+        <div class="logo">niluntiltrue</div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -580,7 +588,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1 class="gradient-text">Roblox Developer</h1>
-        <p>Building immersive experiences with Lua</p>
+        <p>Building immersive experiences with Luau</p>
         <button class="cta">View My Work</button>
     </section>
 
@@ -588,33 +596,33 @@
     <section id="projects">
         <h2 class="fade-in">Featured Projects</h2>
         <div class="projects-grid">
-            <div class="project-card fade-in" data-project="whitelist">
-                <h3>Whitelist System</h3>
-                <p>Advanced whitelist management system with admin panel and database integration for secure access control.</p>
+            <div class="project-card fade-in" data-project="falling">
+                <h3>Falling Forever</h3>
+                <p>Procedurally generated falling game with dynamic island generation and a trinket spawning system with complete DataStore integration.</p>
                 <div class="tech-stack">
-                    <span>Lua</span>
-                    <span>Roblox</span>
+                    <span>Luau</span>
+                    <span>Procedural Generation</span>
                     <span>DataStores</span>
                 </div>
             </div>
 
-            <div class="project-card fade-in" data-project="admin">
-                <h3>Admin Commands</h3>
-                <p>Comprehensive admin panel with 50+ moderation commands, permission levels, and logging system.</p>
+            <div class="project-card fade-in" data-project="building">
+                <h3>Squad Building System</h3>
+                <p>Advanced building system inspired by Squad, featuring smooth tween animations, resource requirements, and proximity-based placement near radios.</p>
                 <div class="tech-stack">
-                    <span>Lua</span>
-                    <span>OOP</span>
-                    <span>UI Design</span>
+                    <span>Luau</span>
+                    <span>TweenService</span>
+                    <span>Templates</span>
                 </div>
             </div>
 
-            <div class="project-card fade-in" data-project="framework">
-                <h3>Game Framework</h3>
-                <p>Modular game framework using Knit for scalable development with service-based architecture.</p>
+            <div class="project-card fade-in" data-project="ticked">
+                <h3>TICKED</h3>
+                <p>Timer-based survival game where players complete tasks to earn more time. Features enemy AI elimination, sleek UI design, and modular systems.</p>
                 <div class="tech-stack">
-                    <span>Lua</span>
-                    <span>Knit</span>
-                    <span>Rojo</span>
+                    <span>Luau</span>
+                    <span>AI Systems</span>
+                    <span>UI Design</span>
                 </div>
             </div>
         </div>
@@ -625,7 +633,7 @@
         <h2 class="fade-in">Skills & Technologies</h2>
         <div class="skills-container">
             <div class="skill fade-in">
-                <h3>Lua Programming</h3>
+                <h3>Luau Programming</h3>
                 <p>Advanced scripting for Roblox</p>
             </div>
             <div class="skill fade-in">
@@ -675,47 +683,50 @@
     <script>
         // Project Data
         const projectData = {
-            whitelist: {
-                title: "Whitelist System",
-                description: "A sophisticated whitelist management system designed for Roblox games, featuring a comprehensive admin panel with real-time database integration. This system provides secure access control, automated user management, and detailed logging capabilities.",
-                tech: ["Lua", "Roblox", "DataStores", "RemoteEvents"],
+            falling: {
+                title: "Falling Forever",
+                description: "An innovative procedurally generated falling game that creates unique island experiences for every player. The game features a sophisticated trinket spawning system that rewards exploration and skilled gameplay. All player progress, trinket collections, and achievements are fully integrated with Roblox DataStores for persistent gameplay across sessions.",
+                tech: ["Luau", "Procedural Generation", "DataStores", "Random Seed Systems"],
                 features: [
-                    "Real-time whitelist updates with DataStore persistence",
-                    "Multi-tier permission system with role-based access",
-                    "Automated kick system for non-whitelisted players",
-                    "Admin panel with search and filtering capabilities",
-                    "Audit logging for all whitelist modifications",
-                    "Bulk import/export functionality for user management"
+                    "Real-time procedural island generation with varied terrain and obstacles",
+                    "Dynamic trinket spawning system with rarity tiers",
+                    "Complete DataStore integration for player progression",
+                    "Optimized performance for smooth falling mechanics",
+                    "Collision detection and physics-based gameplay",
+                    "Score tracking and leaderboard system"
                 ],
-                image: "" // Add your image URL here
+                media: "",
+                mediaType: "video"
             },
-            admin: {
-                title: "Admin Commands Panel",
-                description: "A comprehensive moderation suite featuring over 50 custom commands for game administration. Built with object-oriented programming principles, it provides a powerful yet intuitive interface for game moderators and administrators.",
-                tech: ["Lua", "OOP", "UI Design", "RemoteEvents"],
+            building: {
+                title: "Squad Inspired Building System",
+                description: "A comprehensive building system inspired by the tactical gameplay of Squad. Players must gather resources before construction and can only place buildings within range of a radio station. The system features smooth tween animations for placement and a template-based architecture for scalable building additions.",
+                tech: ["Luau", "TweenService", "Template System", "Spatial Calculation"],
                 features: [
-                    "50+ moderation commands including teleport, kick, ban, and more",
-                    "Hierarchical permission levels (Moderator, Admin, Owner)",
-                    "Modern UI with command autocomplete and suggestions",
-                    "Complete action logging system with timestamps",
-                    "Player management dashboard with quick actions",
-                    "Customizable command aliases and shortcuts"
+                    "Smooth tween animations for building placement and construction",
+                    "Resource requirement system - gather before building",
+                    "Proximity-based placement restricted to radio tower range",
+                    "Template-based building system for easy expansion",
+                    "Visual feedback for valid/invalid placement zones",
+                    "Modular part and model handling for all structures"
                 ],
-                image: ""
+                media: "https://www.youtube.com/embed/YOUR_VIDEO_ID",
+                mediaType: "video"
             },
-            framework: {
-                title: "Game Framework",
-                description: "A robust and scalable game framework built on the Knit architecture, designed for professional Roblox development. This framework emphasizes modularity, maintainability, and best practices for large-scale game projects.",
-                tech: ["Lua", "Knit", "Rojo", "Git"],
+            ticked: {
+                title: "TICKED",
+                description: "A high-stakes survival game where time is your most valuable resource. Your timer continuously ticks down, creating intense pressure as you complete various in-game tasks to earn more time. Eliminate enemy AI, compete against other players, and master the sleek UI to survive. Built with modular systems for easy expansion and future updates.",
+                tech: ["Luau", "AI Systems", "UI Design", "Modular Architecture"],
                 features: [
-                    "Service-based architecture for clean code organization",
-                    "Built-in player data management with auto-save",
-                    "Event-driven communication between modules",
-                    "Comprehensive error handling and logging",
-                    "Hot-reloading support with Rojo integration",
-                    "Extensive documentation and example implementations"
+                    "Timer-based survival gameplay with countdown mechanics",
+                    "Enemy AI system with combat and elimination rewards",
+                    "PvP combat system for competitive time earning",
+                    "Sleek, modern UI with clear time display and task tracking",
+                    "Modular task system for easy addition of new challenges",
+                    "Fully scalable architecture for future game modes"
                 ],
-                image: ""
+                media: "",
+                mediaType: "video"
             }
         };
 
@@ -725,9 +736,16 @@
             const modalBody = document.getElementById('modalBody');
             const project = projectData[projectKey];
 
-            const imageHTML = project.image 
-                ? `<img src="${project.image}" alt="${project.title}">` 
-                : `<div class="project-placeholder">Screenshot Coming Soon</div>`;
+            let mediaHTML;
+            if (project.media) {
+                if (project.mediaType === 'video') {
+                    mediaHTML = `<iframe src="${project.media}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                } else {
+                    mediaHTML = `<img src="${project.media}" alt="${project.title}">`;
+                }
+            } else {
+                mediaHTML = `<div class="project-placeholder">${project.mediaType === 'video' ? 'Video' : 'Screenshot'} Coming Soon</div>`;
+            }
 
             modalBody.innerHTML = `
                 <div class="modal-left">
@@ -744,7 +762,7 @@
                     </div>
                 </div>
                 <div class="modal-right">
-                    ${imageHTML}
+                    ${mediaHTML}
                 </div>
             `;
 
