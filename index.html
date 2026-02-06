@@ -159,9 +159,32 @@
         .hero p {
             font-size: 26px;
             color: #b0b0b0;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
             font-weight: 300;
+            overflow: hidden;
+        }
+
+        .hero p span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(-50px) rotateZ(-10deg);
+        }
+
+        /* Falling letter animation */
+        @keyframes letterFall {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px) rotateZ(-10deg);
+            }
+            60% {
+                transform: translateY(5px) rotateZ(2deg);
+            }
+            80% {
+                transform: translateY(-2px) rotateZ(-1deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateZ(0deg);
+            }
         }
 
         .hero .cta {
@@ -231,6 +254,38 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(-100px) rotateZ(-5deg);
+        }
+
+        /* Falling animation for each card */
+        .project-card:nth-child(1) {
+            animation: fallIntoPlace 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+        }
+
+        .project-card:nth-child(2) {
+            animation: fallIntoPlace 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+        }
+
+        .project-card:nth-child(3) {
+            animation: fallIntoPlace 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
+        }
+
+        @keyframes fallIntoPlace {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) rotateZ(-5deg);
+            }
+            60% {
+                transform: translateY(10px) rotateZ(2deg);
+            }
+            80% {
+                transform: translateY(-5px) rotateZ(-1deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateZ(0deg);
+            }
         }
 
         .project-card::before {
@@ -588,7 +643,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1 class="gradient-text">Roblox Developer</h1>
-        <p>Building immersive experiences with Luau</p>
+        <p id="subtitle">Building immersive experiences with Luau</p>
         <button class="cta">View My Work</button>
     </section>
 
@@ -596,7 +651,7 @@
     <section id="projects">
         <h2 class="fade-in">Featured Projects</h2>
         <div class="projects-grid">
-            <div class="project-card fade-in" data-project="falling">
+            <div class="project-card" data-project="falling">
                 <h3>Falling Forever</h3>
                 <p>Procedurally generated falling game with dynamic island generation and a trinket spawning system with complete DataStore integration.</p>
                 <div class="tech-stack">
@@ -606,7 +661,7 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in" data-project="building">
+            <div class="project-card" data-project="building">
                 <h3>Squad Building System</h3>
                 <p>Advanced building system inspired by Squad, featuring smooth tween animations, resource requirements, and proximity-based placement near radios.</p>
                 <div class="tech-stack">
@@ -616,7 +671,7 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in" data-project="ticked">
+            <div class="project-card" data-project="ticked">
                 <h3>TICKED</h3>
                 <p>Timer-based survival game where players complete tasks to earn more time. Features enemy AI elimination, sleek UI design, and modular systems.</p>
                 <div class="tech-stack">
@@ -664,7 +719,7 @@
         <h2 class="fade-in">Get In Touch</h2>
         <p class="fade-in">Interested in working together? Let's connect!</p>
         <div class="contact-links fade-in">
-            <a href="https://github.com/stgcent-dotcom" target="_blank">GitHub</a>
+            <a href="https://www.youtube.com/@niluntiltrue" target="_blank">YouTube</a>
             <a href="https://discord.com" target="_blank">Discord</a>
             <a href="https://devforum.roblox.com" target="_blank">DevForum</a>
         </div>
@@ -681,6 +736,18 @@
     </div>
 
     <script>
+        // Animate subtitle letters falling into place
+        const subtitle = document.getElementById('subtitle');
+        const text = subtitle.textContent;
+        subtitle.innerHTML = '';
+        
+        text.split('').forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char === ' ' ? '\u00A0' : char; // Preserve spaces
+            span.style.animation = `letterFall 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${0.5 + (index * 0.03)}s forwards`;
+            subtitle.appendChild(span);
+        });
+
         // Project Data
         const projectData = {
             falling: {
@@ -695,7 +762,7 @@
                     "Collision detection and physics-based gameplay",
                     "Score tracking and leaderboard system"
                 ],
-                media: "",
+                media: "https://www.youtube.com/embed/WhtM3FGGsKM",
                 mediaType: "video"
             },
             building: {
@@ -710,7 +777,7 @@
                     "Visual feedback for valid/invalid placement zones",
                     "Modular part and model handling for all structures"
                 ],
-                media: "https://www.youtube.com/embed/YOUR_VIDEO_ID",
+                media: "https://www.youtube.com/embed/lgQ3gSTNqJQ",
                 mediaType: "video"
             },
             ticked: {
@@ -725,7 +792,7 @@
                     "Modular task system for easy addition of new challenges",
                     "Fully scalable architecture for future game modes"
                 ],
-                media: "",
+                media: "https://www.youtube.com/embed/0kvaVaMU8N0",
                 mediaType: "video"
             }
         };
