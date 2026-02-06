@@ -630,6 +630,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#familiar">Familiar With</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -647,7 +648,7 @@
         <div class="projects-grid">
             <div class="project-card" data-project="falling">
                 <h3>Falling Forever</h3>
-                <p>Procedurally generated falling game with dynamic island generation and a trinket spawning system with complete DataStore integration.</p>
+                <p>Procedurally generated falling game with random islands and a trinket spawning system. Everything saves to DataStores.</p>
                 <div class="tech-stack">
                     <span>Luau</span>
                     <span>Procedural Generation</span>
@@ -657,7 +658,7 @@
 
             <div class="project-card" data-project="building">
                 <h3>Squad Building System</h3>
-                <p>Advanced building system inspired by Squad, featuring smooth tween animations, resource requirements, and proximity-based placement near radios.</p>
+                <p>Building system inspired by Squad. Needs resources to build, smooth tween animations, and can only place stuff near radios.</p>
                 <div class="tech-stack">
                     <span>Luau</span>
                     <span>TweenService</span>
@@ -667,7 +668,7 @@
 
             <div class="project-card" data-project="ticked">
                 <h3>TICKED</h3>
-                <p>Timer-based survival game where players complete tasks to earn more time. Features enemy AI elimination, sleek UI design, and modular systems.</p>
+                <p>Timer survival game. Complete tasks to earn more time. Kill AI enemies or other players before your timer runs out.</p>
                 <div class="tech-stack">
                     <span>Luau</span>
                     <span>AI Systems</span>
@@ -679,31 +680,58 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <h2 class="fade-in">Skills & Technologies</h2>
+        <h2 class="fade-in">Skills</h2>
         <div class="skills-container">
             <div class="skill fade-in">
-                <h3>Luau Programming</h3>
-                <p>Advanced scripting for Roblox</p>
+                <h3>Luau</h3>
+                <p>Primary language for Roblox</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>JavaScript</h3>
+                <p>Web development & scripting</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>HTML & CSS</h3>
+                <p>Frontend design & structure</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>Python</h3>
+                <p>Scripting & automation</p>
             </div>
             <div class="skill fade-in">
                 <h3>Roblox Studio</h3>
-                <p>Game development & design</p>
+                <p>Game development platform</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Familiar With Section -->
+    <section id="familiar">
+        <h2 class="fade-in">What I'm Familiar With</h2>
+        <div class="skills-container">
+            <div class="skill fade-in">
+                <h3>Vehicle Systems</h3>
+                <p>Car physics & mechanics</p>
             </div>
             <div class="skill fade-in">
-                <h3>Rojo</h3>
-                <p>Version control & workflow</p>
+                <h3>Combat Systems</h3>
+                <p>Weapons & hit detection</p>
             </div>
             <div class="skill fade-in">
-                <h3>UI/UX Design</h3>
-                <p>Modern interface creation</p>
+                <h3>Chat Systems</h3>
+                <p>Custom messaging & commands</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>AI Systems</h3>
+                <p>Enemy behavior & pathfinding</p>
+            </div>
+            <div class="skill fade-in">
+                <h3>UI Coding</h3>
+                <p>Interface design & scripting</p>
             </div>
             <div class="skill fade-in">
                 <h3>DataStores</h3>
-                <p>Data persistence & management</p>
-            </div>
-            <div class="skill fade-in">
-                <h3>Knit Framework</h3>
-                <p>Structured development</p>
+                <p>Player data management</p>
             </div>
         </div>
     </section>
@@ -714,9 +742,9 @@
         <p class="fade-in">Interested in working together? Let's connect!</p>
         <div class="contact-links fade-in">
             <a href="https://www.youtube.com/@niluntiltrue" target="_blank">YouTube</a>
-            <a href="https://discord.com" target="_blank">Discord</a>
-            <a href="https://devforum.roblox.com" target="_blank">DevForum</a>
+            <a href="https://discord.com" target="_blank" style="cursor: default; pointer-events: none;">Discord: niluntiltrue</a>
         </div>
+        <p class="fade-in" style="margin-top: 60px; font-size: 18px; color: #9ca3af;">Thanks for viewing my portfolio (:</p>
     </section>
 
     <!-- Project Modal -->
@@ -750,45 +778,45 @@
         const projectData = {
             falling: {
                 title: "Falling Forever",
-                description: "An innovative procedurally generated falling game that creates unique island experiences for every player. The game features a sophisticated trinket spawning system that rewards exploration and skilled gameplay. All player progress, trinket collections, and achievements are fully integrated with Roblox DataStores for persistent gameplay across sessions.",
+                description: "A falling game where islands are procedurally generated so every run feels different. Has a trinket system that spawns collectibles throughout the map. Everything saves to DataStores so your progress sticks around.",
                 tech: ["Luau", "Procedural Generation", "DataStores", "Random Seed Systems"],
                 features: [
-                    "Real-time procedural island generation with varied terrain and obstacles",
-                    "Dynamic trinket spawning system with rarity tiers",
-                    "Complete DataStore integration for player progression",
-                    "Optimized performance for smooth falling mechanics",
-                    "Collision detection and physics-based gameplay",
-                    "Score tracking and leaderboard system"
+                    "Islands generate randomly with different terrain each time",
+                    "Trinket spawning system with different rarities",
+                    "DataStore integration saves your collected items",
+                    "Optimized so it runs smoothly while falling",
+                    "Physics-based collision system",
+                    "Tracks your score and shows leaderboards"
                 ],
                 media: "https://www.youtube.com/embed/WhtM3FGGsKM",
                 mediaType: "video"
             },
             building: {
                 title: "Squad Inspired Building System",
-                description: "A comprehensive building system inspired by the tactical gameplay of Squad. Players must gather resources before construction and can only place buildings within range of a radio station. The system features smooth tween animations for placement and a template-based architecture for scalable building additions.",
+                description: "Building system based on how Squad does it. You need to collect resources first, then you can only build near radio towers. Used tweens to make the placement feel smooth instead of instant.",
                 tech: ["Luau", "TweenService", "Template System", "Spatial Calculation"],
                 features: [
-                    "Smooth tween animations for building placement and construction",
-                    "Resource requirement system - gather before building",
-                    "Proximity-based placement restricted to radio tower range",
-                    "Template-based building system for easy expansion",
-                    "Visual feedback for valid/invalid placement zones",
-                    "Modular part and model handling for all structures"
+                    "Buildings tween into place smoothly when you build them",
+                    "Can't build unless you have enough resources",
+                    "Radio tower range system - only build nearby",
+                    "Template system so adding new buildings is easy",
+                    "Shows you where you can and can't place stuff",
+                    "Works with both parts and models"
                 ],
                 media: "https://www.youtube.com/embed/lgQ3gSTNqJQ",
                 mediaType: "video"
             },
             ticked: {
                 title: "TICKED",
-                description: "A high-stakes survival game where time is your most valuable resource. Your timer continuously ticks down, creating intense pressure as you complete various in-game tasks to earn more time. Eliminate enemy AI, compete against other players, and master the sleek UI to survive. Built with modular systems for easy expansion and future updates.",
+                description: "Timer survival game where your time is constantly ticking down. You earn more time by completing tasks like killing AI enemies or other players. Built it with modular systems so I can add new stuff easily.",
                 tech: ["Luau", "AI Systems", "UI Design", "Modular Architecture"],
                 features: [
-                    "Timer-based survival gameplay with countdown mechanics",
-                    "Enemy AI system with combat and elimination rewards",
-                    "PvP combat system for competitive time earning",
-                    "Sleek, modern UI with clear time display and task tracking",
-                    "Modular task system for easy addition of new challenges",
-                    "Fully scalable architecture for future game modes"
+                    "Timer counts down and you die when it hits zero",
+                    "AI enemies you can kill for time rewards",
+                    "PvP system so you can fight other players for time",
+                    "Clean UI that shows your time and tasks",
+                    "Task system built modular so adding new ones is simple",
+                    "Code's organized so I can scale it up later"
                 ],
                 media: "https://www.youtube.com/embed/0kvaVaMU8N0",
                 mediaType: "video"
