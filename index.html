@@ -18,22 +18,45 @@
             overflow-x: hidden;
         }
 
-        /* Cursor Blob Effect */
+        /* New Subtle Cursor Effect - Particle Trail */
+        .cursor-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            opacity: 0;
+            animation: particleFade 0.8s ease-out;
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+        }
+
+        /* Subtle Glow Effect */
         .cursor-glow {
             position: fixed;
-            width: 400px;
-            height: 400px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             pointer-events: none;
             z-index: 1;
             background: radial-gradient(circle, 
-                rgba(138, 43, 226, 0.4) 0%,
-                rgba(0, 191, 255, 0.3) 30%,
-                rgba(255, 20, 147, 0.2) 60%,
+                rgba(102, 126, 234, 0.15) 0%,
+                rgba(118, 75, 162, 0.1) 40%,
                 transparent 70%);
-            filter: blur(60px);
+            filter: blur(30px);
             transform: translate(-50%, -50%);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             mix-blend-mode: screen;
         }
 
@@ -207,6 +230,7 @@
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .project-card::before {
@@ -265,6 +289,172 @@
             color: #a78bfa;
             font-weight: 500;
             border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+
+        /* Project Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(15, 15, 25, 0.95) 0%, rgba(20, 20, 35, 0.95) 100%);
+            border-radius: 25px;
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            box-shadow: 0 30px 90px rgba(102, 126, 234, 0.4);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: rgba(167, 139, 250, 0.2);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #a78bfa;
+            transition: all 0.3s;
+            z-index: 10001;
+        }
+
+        .modal-close:hover {
+            background: rgba(167, 139, 250, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 60px;
+        }
+
+        .modal-left {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .modal-left h2 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-left .project-description {
+            color: #b0b0b0;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .modal-left .tech-stack {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .modal-left .tech-stack span {
+            padding: 10px 20px;
+            background: rgba(167, 139, 250, 0.15);
+            border-radius: 25px;
+            font-size: 14px;
+            color: #a78bfa;
+            font-weight: 500;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+
+        .modal-left .features {
+            margin-top: 20px;
+        }
+
+        .modal-left .features h3 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .modal-left .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-left .features ul li {
+            color: #b0b0b0;
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .modal-left .features ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #a78bfa;
+            font-size: 20px;
+        }
+
+        .modal-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-right img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Placeholder for project images */
+        .project-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+            border: 1px solid rgba(167, 139, 250, 0.2);
         }
 
         /* Skills Section */
@@ -350,12 +540,22 @@
             transform: translateY(0);
         }
 
+        @media (max-width: 1024px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 52px; }
             nav { padding: 20px; }
             section { padding: 80px 25px; }
             .cursor-glow { display: none; }
+            .cursor-particle { display: none; }
             nav ul { gap: 20px; }
+            .modal-body { padding: 30px; }
+            .modal-close { top: 15px; right: 15px; }
         }
     </style>
 </head>
@@ -388,7 +588,7 @@
     <section id="projects">
         <h2 class="fade-in">Featured Projects</h2>
         <div class="projects-grid">
-            <div class="project-card fade-in">
+            <div class="project-card fade-in" data-project="whitelist">
                 <h3>Whitelist System</h3>
                 <p>Advanced whitelist management system with admin panel and database integration for secure access control.</p>
                 <div class="tech-stack">
@@ -398,7 +598,7 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in">
+            <div class="project-card fade-in" data-project="admin">
                 <h3>Admin Commands</h3>
                 <p>Comprehensive admin panel with 50+ moderation commands, permission levels, and logging system.</p>
                 <div class="tech-stack">
@@ -408,7 +608,7 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in">
+            <div class="project-card fade-in" data-project="framework">
                 <h3>Game Framework</h3>
                 <p>Modular game framework using Knit for scalable development with service-based architecture.</p>
                 <div class="tech-stack">
@@ -462,7 +662,125 @@
         </div>
     </section>
 
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-close" onclick="closeModal()">×</div>
+        <div class="modal-content">
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be inserted dynamically -->
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Project Data
+        const projectData = {
+            whitelist: {
+                title: "Whitelist System",
+                description: "A sophisticated whitelist management system designed for Roblox games, featuring a comprehensive admin panel with real-time database integration. This system provides secure access control, automated user management, and detailed logging capabilities.",
+                tech: ["Lua", "Roblox", "DataStores", "RemoteEvents"],
+                features: [
+                    "Real-time whitelist updates with DataStore persistence",
+                    "Multi-tier permission system with role-based access",
+                    "Automated kick system for non-whitelisted players",
+                    "Admin panel with search and filtering capabilities",
+                    "Audit logging for all whitelist modifications",
+                    "Bulk import/export functionality for user management"
+                ],
+                image: "" // Add your image URL here
+            },
+            admin: {
+                title: "Admin Commands Panel",
+                description: "A comprehensive moderation suite featuring over 50 custom commands for game administration. Built with object-oriented programming principles, it provides a powerful yet intuitive interface for game moderators and administrators.",
+                tech: ["Lua", "OOP", "UI Design", "RemoteEvents"],
+                features: [
+                    "50+ moderation commands including teleport, kick, ban, and more",
+                    "Hierarchical permission levels (Moderator, Admin, Owner)",
+                    "Modern UI with command autocomplete and suggestions",
+                    "Complete action logging system with timestamps",
+                    "Player management dashboard with quick actions",
+                    "Customizable command aliases and shortcuts"
+                ],
+                image: ""
+            },
+            framework: {
+                title: "Game Framework",
+                description: "A robust and scalable game framework built on the Knit architecture, designed for professional Roblox development. This framework emphasizes modularity, maintainability, and best practices for large-scale game projects.",
+                tech: ["Lua", "Knit", "Rojo", "Git"],
+                features: [
+                    "Service-based architecture for clean code organization",
+                    "Built-in player data management with auto-save",
+                    "Event-driven communication between modules",
+                    "Comprehensive error handling and logging",
+                    "Hot-reloading support with Rojo integration",
+                    "Extensive documentation and example implementations"
+                ],
+                image: ""
+            }
+        };
+
+        // Open Modal
+        function openModal(projectKey) {
+            const modal = document.getElementById('projectModal');
+            const modalBody = document.getElementById('modalBody');
+            const project = projectData[projectKey];
+
+            const imageHTML = project.image 
+                ? `<img src="${project.image}" alt="${project.title}">` 
+                : `<div class="project-placeholder">Screenshot Coming Soon</div>`;
+
+            modalBody.innerHTML = `
+                <div class="modal-left">
+                    <h2>${project.title}</h2>
+                    <p class="project-description">${project.description}</p>
+                    <div class="tech-stack">
+                        ${project.tech.map(tech => `<span>${tech}</span>`).join('')}
+                    </div>
+                    <div class="features">
+                        <h3>Key Features</h3>
+                        <ul>
+                            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    ${imageHTML}
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Project Card Click Handlers
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const projectKey = card.getAttribute('data-project');
+                openModal(projectKey);
+            });
+        });
+
+        // Close modal on background click
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target.id === 'projectModal') {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
         // Smooth Cursor Glow Effect
         const cursorGlow = document.querySelector('.cursor-glow');
         let mouseX = 0, mouseY = 0;
@@ -473,11 +791,9 @@
             mouseY = e.clientY;
         });
 
-        // Smooth follow animation
         function animateGlow() {
-            // Easing effect for smooth following
-            glowX += (mouseX - glowX) * 0.1;
-            glowY += (mouseY - glowY) * 0.1;
+            glowX += (mouseX - glowX) * 0.15;
+            glowY += (mouseY - glowY) * 0.15;
             
             cursorGlow.style.left = glowX + 'px';
             cursorGlow.style.top = glowY + 'px';
@@ -485,6 +801,30 @@
             requestAnimationFrame(animateGlow);
         }
         animateGlow();
+
+        // Particle Trail Effect
+        let lastParticleTime = 0;
+        const particleInterval = 30; // milliseconds
+
+        document.addEventListener('mousemove', (e) => {
+            const currentTime = Date.now();
+            if (currentTime - lastParticleTime > particleInterval) {
+                createParticle(e.clientX, e.clientY);
+                lastParticleTime = currentTime;
+            }
+        });
+
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'cursor-particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 800);
+        }
 
         // Scroll Progress Indicator
         window.addEventListener('scroll', () => {
